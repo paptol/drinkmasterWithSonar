@@ -1,0 +1,41 @@
+
+Drinkscreen component tests
+  //Unstable test.. Change something and save..
+  it('should load drinks with a onInit', () => {
+    let drinks = getSomeDrinks('a');
+    spyOn(coctailService, 'getDrinksByLetter').and.returnValue(of(drinks).pipe(delay( 200 )));
+
+    component.ngOnInit();
+
+    expect(component.coctails).toEqual(drinks);
+  });
+
+  //Making sure framwork finish up the test with done
+  it('should load drinks with a onInit', done => {
+    let drinks = getSomeDrinks('a');
+    spyOn(coctailService, 'getDrinksByLetter').and.returnValue(of(drinks));
+
+    component.ngOnInit();
+
+    expect(component.coctails).toEqual(drinks);
+    done();
+  });
+
+  //Fancy test simulating time gone
+  it('should load drinks with a onInit', fakeAsync(() => {
+    let drinks = getSomeDrinks('a');
+    spyOn(coctailService, 'getDrinksByLetter').and.returnValue(of(drinks).pipe(delay( 500 )));
+
+    component.ngOnInit();
+    tick(1000);
+
+    expect(component.coctails).toEqual(drinks);
+  }));
+
+
+//Provoking false positive..
+// let in code in drink-screen.component.ts
+  it('is just dummy', () => {
+    component.ngOnInit();
+    expect(true).toEqual(true);
+  });

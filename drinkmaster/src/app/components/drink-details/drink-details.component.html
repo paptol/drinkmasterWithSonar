@@ -1,0 +1,20 @@
+<div class="details">
+  <h2 *ngIf="coctail != undefined">Details of {{ coctail.strDrink }}</h2>
+  <div class="row">
+    <div *ngIf="coctail != undefined" [ngClass]="{'col-md-6': !inlineExpanded, 'col-md-12':inlineExpanded}">
+      <div>ID: {{coctail.idDrink}}</div>
+      <div>Title: {{coctail.strDrink}}</div>
+      <div>Alcoholic: {{coctail.strAlcoholic}}</div>
+      <div>Category: {{coctail.strCategory}}</div>
+      <div>Glass: {{coctail.strGlass}}</div>
+      <div>Instructions: {{coctail.strInstructions}}</div>
+      <div>Ingredients:</div>
+      <div *ngFor="let ing of coctail.ingredients">
+        <div>{{ing.name}} {{ing.amount}}</div>
+      </div>
+    </div>
+    <div *ngIf="!inlineExpanded && coctail != undefined" class="col-md-6">
+      <img src="{{coctail.strDrinkThumb}}" style="max-height: 550px;"/>
+    </div>
+  </div>
+</div>

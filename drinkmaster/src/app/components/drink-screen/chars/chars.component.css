@@ -1,0 +1,7 @@
+.char-style {
+  cursor: pointer;
+  margin-right: 3px;
+}
+.char-style:hover {
+  text-decoration: underline;
+}

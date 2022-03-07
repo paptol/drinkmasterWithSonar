@@ -1,0 +1,39 @@
+To drink details
+
+ providers:[
+        {
+          provide: ActivatedRoute,
+          useValue: { params: of({ id: '12345' })}
+        },
+      ]
+
+
+  it('should get detailsmodel when invoked thru path', done => {
+    // Make the route have params like from URL
+    route.params = of({id: '4234'});
+    let model = new CoctailDetailsModel();
+
+    //Setting up service to return model when called with correct id
+    spyOn(coctailService, 'getDetails').withArgs('4234').and.returnValue(of(model));
+
+    component.ngOnInit();
+
+    expect(component.coctail).toEqual(model);
+
+    done();
+  });
+
+  it('should get detailsmodel when invoked thru input', done => {
+    //Setting the id thru @Input()
+    component.drinkId = '9998';
+    let model = new CoctailDetailsModel();
+
+    //Setting up service to return model when called with correct id
+    spyOn(coctailService, 'getDetails').withArgs('9998').and.returnValue(of(model));
+
+    component.ngOnInit();
+
+    expect(component.coctail).toEqual(model);
+
+    done();
+  });

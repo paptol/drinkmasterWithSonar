@@ -1,0 +1,8 @@
+<div class="row">
+  <div class="col-md-4 title" (click)="expand()">{{ coctail?.strDrink }}</div>
+  <div class="col-md-4">{{ coctail?.strAlcoholic }}</div>
+  <div class="col-md-4"><a href="drinks/{{coctail?.idDrink}}">Open details</a></div>
+</div>
+<div *ngIf="isExpanded">
+  <app-drink-details [drinkId]=coctail.idDrink [inlineExpanded]=true></app-drink-details>
+</div>

@@ -1,0 +1,8 @@
+ it('should emit letter when clicked', () => {
+    let letter = 'a';
+
+    let spy = spyOn(component.charSelected, 'emit');
+    component.charClicked(letter);
+
+    expect(spy).toHaveBeenCalledWith(letter);
+  });
